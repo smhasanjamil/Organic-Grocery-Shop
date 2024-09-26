@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const user = { email, password };
+    console.log(user);
+  };
   return (
     <>
       <main className="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
@@ -27,7 +35,7 @@ const Register = () => {
             </div>
           </div>
           <div className="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+            <form onSubmit={handleRegister} className="space-y-5">
               <div>
                 <label className="font-medium">Name</label>
                 <input
@@ -39,6 +47,7 @@ const Register = () => {
               <div>
                 <label className="font-medium">Email</label>
                 <input
+                  name="email"
                   type="email"
                   required
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-green-600 shadow-sm rounded-lg"
@@ -47,6 +56,7 @@ const Register = () => {
               <div>
                 <label className="font-medium">Password</label>
                 <input
+                  name="password"
                   type="password"
                   required
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-green-600 shadow-sm rounded-lg"
