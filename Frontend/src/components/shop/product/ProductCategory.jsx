@@ -10,12 +10,12 @@ const ProductCategory = () => {
     });
   }, []);
   return (
-    <div className="max-w-7xl mx-auto my-10 px-4 lg:px-0">
+    <div className="max-w-7xl mx-auto my-10 pb-10 lg:pb-20 px-4 lg:px-0">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products?.map((product) => (
           <div key={product?.id}>
             {console.log(product)}
-            <div className="max-w-full rounded overflow-hidden shadow-lg">
+            <div className="max-w-full rounded overflow-hidden shadow-lg bg-white">
               <img
                 className="w-full"
                 src={product.categoryImage}
