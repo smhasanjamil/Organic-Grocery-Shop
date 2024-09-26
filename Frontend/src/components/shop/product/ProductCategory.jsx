@@ -14,7 +14,7 @@ const ProductCategory = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products?.map((product) => (
           <div key={product?.id}>
-            {console.log(product)}
+            {/* {console.log(product)} */}
             <div className="max-w-full rounded overflow-hidden shadow-lg bg-white">
               <img
                 className="w-full"

@@ -5,13 +5,7 @@ const CallToAction = () => {
     <>
       <div className="bg-white min-h-[475px] px-4 lg:px-0">
         <div className="grid md:grid-cols-2 justify-center items-center max-md:text-center gap-8">
-          <div className="md:text-right max-md:mt-12 h-full">
-            <img
-              src={foodcta}
-              alt="Premium Benefits"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          
           <div className="max-w-md mx-auto p-4">
             <button className="btn inline-block bg-gray-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-6">
               Your online resource of healthy recipes
@@ -29,6 +23,13 @@ const CallToAction = () => {
                 Order Now
               </button>
             </div>
+          </div>
+          <div className="md:text-right max-md:mt-12 h-full">
+            <img
+              src={foodcta}
+              alt="Premium Benefits"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </div>
