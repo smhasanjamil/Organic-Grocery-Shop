@@ -156,7 +156,7 @@ const Header = () => {
                     <a>Settings</a>
                   </li>
                   <li>
-                    <a>Logout</a>
+                    <Link to='/login'>Log in</Link>
                   </li>
                 </ul>
               </div>

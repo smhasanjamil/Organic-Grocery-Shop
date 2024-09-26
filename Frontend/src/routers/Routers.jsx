@@ -3,6 +3,8 @@ import App from "../App";
 import Home from "../components/home/Home";
 import Shop from "../components/shop/Shop";
 import Blog from "../components/blog/Blog";
+import Register from "../components/Authentication/Register";
+import Login from "../components/Authentication/Login";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

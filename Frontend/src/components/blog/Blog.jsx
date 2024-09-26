@@ -5,7 +5,7 @@ const Blog = () => {
   const [blogs, setblogs] = useState([]);
   useEffect(() => {
     axios.get("/blog.json").then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       setblogs(response.data);
     });
   }, []);
