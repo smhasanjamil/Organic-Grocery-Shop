@@ -8,17 +8,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 
-// Use CORS middleware
-const corsOptions = {
-  origin: '*', // Replace '*' with your frontend URL in production
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  credentials: true, // If your requests include credentials (like cookies)
-};
-
-app.use(cors(corsOptions));
 
 // Create Express app
-// const app = express();
+const app = express();
 
 // Use CORS middleware
 app.use(cors());
