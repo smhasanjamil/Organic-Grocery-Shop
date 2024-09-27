@@ -36,10 +36,10 @@ const Product = () => {
                 </p>
               </div>
               <div className="px-6 pb-2 flex gap-2 flex-col lg:flex-row">
-                <button className="w-full px-4 py-2 text-white bg-green-600 rounded-lg duration-150 hover:bg-green-700">
+                <button onClick={()=>handleAddToCart(product?.id)} className="w-full px-4 py-2 text-white bg-green-600 rounded-lg duration-150 hover:bg-green-700">
                   Add to Cart
                 </button>
-                <button className="w-full px-4 py-2 text-white bg-green-600 rounded-lg duration-150 hover:bg-green-700">
+                <button onClick={()=>handleProductView(product?.id)} className="w-full px-4 py-2 text-white bg-green-600 rounded-lg duration-150 hover:bg-green-700">
                   View
                 </button>
               </div>
