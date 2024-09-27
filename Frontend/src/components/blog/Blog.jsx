@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const Blog = () => {
   const [blogs, setblogs] = useState([]);
   useEffect(() => {
-    axios.get("/blog.json").then((response) => {
+    axios.get("https://organic-grocery-shop-backend.vercel.app/blog").then((response) => {
       // console.log(response.data);
       setblogs(response.data);
     });
