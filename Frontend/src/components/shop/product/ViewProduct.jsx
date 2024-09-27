@@ -1,8 +1,39 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProviders";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const ViewProduct = () => {
   const product = useLoaderData();
-  console.log(product);
+  //   console.log(product);
+
+  const { user } = useContext(AuthContext);
+
+  // Handle add to cart
+  const handleAddToCart = (product) => {
+    if (user && user?.email) {
+      const email = user?.email;
+      const productName = product?.name;
+      const image = product?.image;
+      const productPrice = product?.price;
+      const productId = product?._id;
+      const cart = { email, productName, image, productPrice, productId };
+      // console.log(cart);
+      axios
+        .post("https://organic-grocery-shop-backend.vercel.app/carts", cart)
+        .then((res) => {
+          console.log(res.data);
+          if (res?.data?.insertedId) {
+            toast.success("Added to cart!");
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
+  };
+
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 lg:px-0">
@@ -102,16 +133,13 @@ const ViewProduct = () => {
                 </div>
               </div> */}
 
-            
-               
-
-                <button
-                  type="button"
-                  className="w-full mt-8 px-6 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-md"
-                >
-                  Add to cart
-                </button>
-           
+              <button
+                onClick={() => handleAddToCart(product)}
+                type="button"
+                className="w-full mt-8 px-6 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-md"
+              >
+                Add to cart
+              </button>
 
               <div className="mt-8">
                 <h3 className="text-xl font-bold text-gray-800">Description</h3>
