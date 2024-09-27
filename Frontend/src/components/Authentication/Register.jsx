@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
@@ -21,7 +22,19 @@ const Register = () => {
         toast.success('Successfully registered!')
         const user = userCredential.user;
         console.log(user);
+        // console.log(user?.email);
+        const userMail=user?.email;
+        const userEmail = {userMail}
         form.reset();
+        // Form data insert to database start
+        axios.post('http://localhost:8000/users', userEmail)
+        .then(res => {
+            console.log(res.data);
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
+    // Form data insert to database end
       })
       .catch((error) => {
         // const errorCode = error.code;

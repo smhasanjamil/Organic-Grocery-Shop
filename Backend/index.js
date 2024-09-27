@@ -34,8 +34,14 @@ async function run() {
 				// Connect the client to the server	(optional starting in v4.7)
         client.connect();
 
+        const userCollection = client.db("organic").collection("user");
        
-
+        // Add user to database while registration in firebase
+        app.post("/users", async (req, res) => {
+          const user = req.body;
+          const result = await userCollection.insertOne(user);
+          res.send(result);
+      });
 
 
        
