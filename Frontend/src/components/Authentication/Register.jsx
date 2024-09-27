@@ -1,13 +1,34 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
+import toast from "react-hot-toast";
 
 const Register = () => {
+    const { createUser } = useContext(AuthContext);
+
+  // Handle registration
   const handleRegister = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    const user = { email, password };
-    console.log(user);
+    // const user = { email, password };
+    // console.log(user);
+
+    // Create user by password
+    createUser(email, password)
+      .then((userCredential) => {
+        toast.success('Successfully registered!')
+        const user = userCredential.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((error) => {
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        toast.error("Registration failed!")
+      });
   };
   return (
     <>
@@ -36,14 +57,6 @@ const Register = () => {
           </div>
           <div className="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
             <form onSubmit={handleRegister} className="space-y-5">
-              <div>
-                <label className="font-medium">Name</label>
-                <input
-                  type="text"
-                  required
-                  className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-green-600 shadow-sm rounded-lg"
-                />
-              </div>
               <div>
                 <label className="font-medium">Email</label>
                 <input

@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import avatar from "../../../assets/images/user.png";
+import { AuthContext } from "../../../providers/AuthProviders";
+import toast from "react-hot-toast";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  // console.log(user);
+
   const [state, setState] = useState(false);
 
   let location = useLocation();
@@ -13,6 +19,20 @@ const Header = () => {
     { title: "Shop", path: "/shop" },
     { title: "Blog", path: "/blog" },
   ];
+
+  // Handle Logout
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        console.log("Sign-out successful.");
+        toast.success(' Logged out successfully!')
+
+      })
+      .catch((error) => {
+        console.log("An error happened.", error);
+      });
+  };
+
   return (
     <>
       <nav className="bg-white w-full border-b md:border-0 md:static">
@@ -149,15 +169,23 @@ const Header = () => {
                   tabIndex={0}
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
                 >
-                  <li>
-                    <a className="justify-between">Profile</a>
-                  </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
-                  <li>
-                    <Link to='/login'>Log in</Link>
-                  </li>
+                  {user && (
+                    <>
+                      <li>
+                        <Link to="" className="justify-between">
+                          Dashboard
+                        </Link>
+                      </li>
+                      <li>
+                        <button onClick={handleLogout}>Logout</button>
+                      </li>
+                    </>
+                  )}
+                  {!user && (
+                    <li>
+                      <Link to="/login">Log in</Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
