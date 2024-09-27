@@ -35,6 +35,16 @@ async function run() {
         client.connect();
 
         const userCollection = client.db("organic").collection("user");
+        const productCollection = client.db("organic").collection("product");
+
+
+        // Find all product
+        app.get("/product", async (req, res) => {
+          const cursor = productCollection.find();
+          const user = await cursor.toArray();
+          res.send(user);
+      });
+
        
         // Add user to database while registration in firebase
         app.post("/users", async (req, res) => {
