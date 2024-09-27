@@ -27,7 +27,7 @@ const Register = () => {
         const userEmail = {userMail}
         form.reset();
         // Form data insert to database start
-        axios.post('http://localhost:8000/users', userEmail)
+        axios.post('https://organic-grocery-shop-backend.vercel.app/users', userEmail)
         .then(res => {
             console.log(res.data);
         })
