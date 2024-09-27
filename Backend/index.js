@@ -36,11 +36,19 @@ async function run() {
 
         const userCollection = client.db("organic").collection("user");
         const productCollection = client.db("organic").collection("product");
+        const blogCollection = client.db("organic").collection("blog");
 
 
         // Find all product
         app.get("/product", async (req, res) => {
           const cursor = productCollection.find();
+          const user = await cursor.toArray();
+          res.send(user);
+      });
+
+        // Find all blog post
+        app.get("/blog", async (req, res) => {
+          const cursor = blogCollection.find();
           const user = await cursor.toArray();
           res.send(user);
       });
