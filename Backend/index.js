@@ -15,9 +15,6 @@ const app = express();
 // Use CORS middleware
 app.use(cors());
 
-// Parse JSON request bodies
-app.use(express.json());
-
 
 // Connect to MongoDB
 const uri = process.env.MONGODB_URI;
@@ -46,6 +43,9 @@ async function run() {
       });
 
 
+      app.get('/health', (req, res) => {
+        res.json({ status: 'OK' });
+    });
        
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
