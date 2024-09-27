@@ -3,10 +3,13 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
 import axios from "axios";
 import toast from "react-hot-toast";
+import useCart from "../../../hooks/useCart";
 
 const ViewProduct = () => {
   const product = useLoaderData();
   //   console.log(product);
+
+  const [, refetch] = useCart();
 
   const { user } = useContext(AuthContext);
 
@@ -24,6 +27,7 @@ const ViewProduct = () => {
         .post("https://organic-grocery-shop-backend.vercel.app/carts", cart)
         .then((res) => {
           console.log(res.data);
+          refetch();
           if (res?.data?.insertedId) {
             toast.success("Added to cart!");
           }

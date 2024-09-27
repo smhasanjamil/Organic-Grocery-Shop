@@ -64,6 +64,18 @@ async function run() {
         res.send(product);
     });
 
+
+    // Get cart data
+    app.get("/carts", async (req, res) => {
+      const email = req.query.email;
+      const query = {
+        email: email
+    };
+      const cursor = cartCollection.find(query);
+      const cartItem = await cursor.toArray();
+      res.send(cartItem);
+  });
+
        
         // Add user to database while registration in firebase
         app.post("/users", async (req, res) => {
