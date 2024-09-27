@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
+import toast from "react-hot-toast";
 
 const Product = () => {
   const { user } = useContext(AuthContext);
@@ -24,15 +25,19 @@ const Product = () => {
       const image = product?.image;
       const productPrice = product?.price;
       const productId = product?._id;
-      const cart = { email, productName,image,productPrice,productId };
+      const cart = { email, productName, image, productPrice, productId };
       // console.log(cart);
-      axios.post('http://localhost:8000/carts', cart)
-      .then(res => {
+      axios
+        .post("https://organic-grocery-shop-backend.vercel.app/carts", cart)
+        .then((res) => {
           console.log(res.data);
-      })
-      .catch(error => {
+          if (res?.data?.insertedId) {
+            toast.success("Added to cart!");
+          }
+        })
+        .catch((error) => {
           console.log(error.message);
-      });
+        });
     }
   };
 
