@@ -7,13 +7,14 @@ const dotenv = require('dotenv');
 // Load environment variables from .env file
 dotenv.config();
 
-
-
 // Create Express app
 const app = express();
 
 // Use CORS middleware
 app.use(cors());
+
+// Parse JSON request bodies
+app.use(express.json());
 
 
 // Connect to MongoDB
