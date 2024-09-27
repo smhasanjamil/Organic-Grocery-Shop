@@ -37,6 +37,7 @@ async function run() {
         const userCollection = client.db("organic").collection("user");
         const productCollection = client.db("organic").collection("product");
         const blogCollection = client.db("organic").collection("blog");
+        const cartCollection = client.db("organic").collection("cart");
 
 
         // Find all product
@@ -71,6 +72,13 @@ async function run() {
           res.send(result);
       });
 
+
+      // Add to cart
+      app.post("/carts", async (req, res) => {
+        const cartItem = req.body;
+        const result = await cartCollection.insertOne(cartItem);
+        res.send(result);
+    });
 
      
        

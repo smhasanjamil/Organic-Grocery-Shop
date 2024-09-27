@@ -69,7 +69,7 @@ const ViewProduct = () => {
                 </svg>
               </div>
 
-              <div className="mt-8">
+              {/* <div className="mt-8">
                 <h3 className="text-xl font-bold text-gray-800">Items</h3>
                 <div className="mt-4">
                   <button
@@ -100,14 +100,18 @@ const ViewProduct = () => {
                     </svg>
                   </button>
                 </div>
-              </div>
+              </div> */}
 
-              <button
-                type="button"
-                className="w-full mt-8 px-6 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-md"
-              >
-                Add to cart
-              </button>
+            
+               
+
+                <button
+                  type="button"
+                  className="w-full mt-8 px-6 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-md"
+                >
+                  Add to cart
+                </button>
+           
 
               <div className="mt-8">
                 <h3 className="text-xl font-bold text-gray-800">Description</h3>

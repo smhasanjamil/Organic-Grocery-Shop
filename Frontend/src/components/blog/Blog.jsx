@@ -31,7 +31,7 @@ const Blog = () => {
                 {blog?.date}
               </p>
               <a
-                href=""
+                href="#"
                 className="mt-4 inline-block px-4 py-2 rounded tracking-wider bg-green-500 hover:bg-green-600 text-white text-[13px]"
               >
                 Read More
