@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const Product = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios.get("/product.json").then((response) => {
+    axios.get("https://organic-grocery-shop-backend.vercel.app/product").then((response) => {
       //   console.log(response.data);
       setProducts(response.data);
     });
