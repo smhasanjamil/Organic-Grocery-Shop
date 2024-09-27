@@ -44,9 +44,7 @@ async function run() {
       });
 
 
-      app.get('/health', (req, res) => {
-        res.json({ status: 'OK' });
-    });
+     
        
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
