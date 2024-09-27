@@ -45,7 +45,7 @@ const Product = () => {
                 >
                   Add to Cart
                 </button>
-                <Link to={`view-product/${product?.id}`} className="w-full">
+                <Link to={`view-product/${product?._id}`} className="w-full">
                   <button className="w-full px-4 py-2 text-white bg-green-600 rounded-lg duration-150 hover:bg-green-700">
                     View
                   </button>
