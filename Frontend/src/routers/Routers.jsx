@@ -5,6 +5,7 @@ import Shop from "../components/shop/Shop";
 import Blog from "../components/blog/Blog";
 import Register from "../components/Authentication/Register";
 import Login from "../components/Authentication/Login";
+import ViewProduct from "../components/shop/product/ViewProduct";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,11 @@ export const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+      },
+      {
+        path: "/view-product/:id",
+        element: <ViewProduct/>,
+        loader:()=>fetch()
       },
       {
         path: "/blog",

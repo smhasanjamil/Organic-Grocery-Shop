@@ -53,6 +53,16 @@ async function run() {
           res.send(user);
       });
 
+      // View Product
+      app.get("/product/:id", async (req, res) => {
+        const id = req.params.id;
+        const query = {
+            _id: new ObjectId(id)
+        };
+        const product = await productCollection.findOne(query);
+        res.send(product);
+    });
+
        
         // Add user to database while registration in firebase
         app.post("/users", async (req, res) => {
