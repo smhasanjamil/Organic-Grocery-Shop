@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios.get("https://organic-grocery-shop-backend.vercel.app/product").then((response) => {
-      //   console.log(response.data);
-      setProducts(response.data);
-    });
+    axios
+      .get("https://organic-grocery-shop-backend.vercel.app/product")
+      .then((response) => {
+        //   console.log(response.data);
+        setProducts(response.data);
+      });
   }, []);
   return (
     <div className="max-w-7xl mx-auto my-10 px-4 lg:px-0">
@@ -36,12 +39,17 @@ const Product = () => {
                 </p>
               </div>
               <div className="px-6 pb-2 flex gap-2 flex-col lg:flex-row">
-                <button onClick={()=>handleAddToCart(product?.id)} className="w-full px-4 py-2 text-white bg-green-600 rounded-lg duration-150 hover:bg-green-700">
+                <button
+                  onClick={() => handleAddToCart(product?.id)}
+                  className="w-full px-4 py-2 text-white bg-green-600 rounded-lg duration-150 hover:bg-green-700"
+                >
                   Add to Cart
                 </button>
-                <button onClick={()=>handleProductView(product?.id)} className="w-full px-4 py-2 text-white bg-green-600 rounded-lg duration-150 hover:bg-green-700">
-                  View
-                </button>
+                <Link to={`view-product/${product?.id}`}>
+                  <button className="w-full px-4 py-2 text-white bg-green-600 rounded-lg duration-150 hover:bg-green-700">
+                    View
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
