@@ -1,7 +1,30 @@
+import axios from "axios";
 import useCart from "../../../hooks/useCart";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
+
+  // Handle delete
+const handleDelete=(id)=>{
+ 
+  axios.delete(`http://localhost:8000/carts/${id}`)
+        .then(response => {
+            // console.log('Item deleted:', response.data);
+
+            if (response?.data?.deletedCount > 0) {
+                alert('Deleted Succesfully');
+                // const remain = users.filter(user => user._id !== id);
+                // setUsers(remain);
+                refetch();
+            }
+
+        })
+        .catch(error => {
+            console.error('Error deleting item:', error.message);
+        });
+  
+}
+
   const totalPrice = parseFloat(
     cart.reduce((total, item) => total + item.productPrice, 0).toFixed(2)
   );
@@ -75,7 +98,8 @@ const Cart = () => {
 
                 <div className="ml-auto flex flex-col">
                   <div className="flex items-start gap-4 justify-end">
-                    <button>
+                    <button onClick={()=>handleDelete(myCart?._id)}>
+                      
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-4 cursor-pointer fill-gray-400 inline-block"
