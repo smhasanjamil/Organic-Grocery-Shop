@@ -6,6 +6,8 @@ import Blog from "../components/blog/Blog";
 import Register from "../components/Authentication/Register";
 import Login from "../components/Authentication/Login";
 import ViewProduct from "../components/shop/product/ViewProduct";
+import Dashboard from "../layout/Dashboard";
+import Cart from "../components/shop/cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +31,10 @@ export const router = createBrowserRouter([
           ),
       },
       {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
         path: "/blog",
         element: <Blog />,
       },
@@ -41,5 +47,9 @@ export const router = createBrowserRouter([
         element: <Login />,
       },
     ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard />,
   },
 ]);
