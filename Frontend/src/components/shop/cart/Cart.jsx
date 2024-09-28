@@ -2,6 +2,9 @@ import useCart from "../../../hooks/useCart";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
+  const totalPrice = parseFloat(
+    cart.reduce((total, item) => total + item.productPrice, 0).toFixed(2)
+  );
   return (
     <div className="min-h-screen max-w-7xl mx-auto px-4 lg:px-4">
       <div className="font-sans max-w-4xl max-md:max-w-xl mx-auto p-4">
@@ -72,34 +75,26 @@ const Cart = () => {
 
                 <div className="ml-auto flex flex-col">
                   <div className="flex items-start gap-4 justify-end">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-4 cursor-pointer fill-gray-400 inline-block"
-                      viewBox="0 0 64 64"
-                    >
-                      <path
-                        d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
-                        data-original="#000000"
-                      ></path>
-                    </svg>
-
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-4 cursor-pointer fill-gray-400 inline-block"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
-                        data-original="#000000"
-                      ></path>
-                      <path
-                        d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
-                        data-original="#000000"
-                      ></path>
-                    </svg>
+                    <button>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-4 cursor-pointer fill-gray-400 inline-block"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
+                          data-original="#000000"
+                        ></path>
+                        <path
+                          d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
+                          data-original="#000000"
+                        ></path>
+                      </svg>
+                    </button>
                   </div>
                   <h3 className="text-base font-bold text-gray-800 mt-auto">
-                    $120.00
+                    {myCart?.productPrice}{" "}
+                    <span className="font-extrabold">&#2547;</span>
                   </h3>
                 </div>
               </div>
@@ -111,17 +106,29 @@ const Cart = () => {
           <div className="bg-white rounded-md px-4 py-6 h-max shadow-[0_2px_12px_-3px_rgba(6,81,237,0.3)]">
             <ul className="text-gray-800 space-y-4">
               <li className="flex flex-wrap gap-4 text-sm">
-                Subtotal <span className="ml-auto font-bold">$200.00</span>
+                Subtotal{" "}
+                <span className="ml-auto font-bold">
+                  {totalPrice} <span className="font-extrabold">&#2547;</span>
+                </span>
               </li>
               <li className="flex flex-wrap gap-4 text-sm">
-                Shipping <span className="ml-auto font-bold">$2.00</span>
+                Shipping{" "}
+                <span className="ml-auto font-bold">
+                  0.00 <span className="font-extrabold">&#2547;</span>
+                </span>
               </li>
               <li className="flex flex-wrap gap-4 text-sm">
-                Tax <span className="ml-auto font-bold">$4.00</span>
+                Tax{" "}
+                <span className="ml-auto font-bold">
+                  0.00 <span className="font-extrabold">&#2547;</span>
+                </span>
               </li>
               <hr className="border-gray-300" />
               <li className="flex flex-wrap gap-4 text-sm font-bold">
-                Total <span className="ml-auto">$206.00</span>
+                Total{" "}
+                <span className="ml-auto">
+                  {totalPrice} <span className="font-extrabold">&#2547;</span>
+                </span>
               </li>
             </ul>
 

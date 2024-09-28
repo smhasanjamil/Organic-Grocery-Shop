@@ -7,9 +7,13 @@ import toast from "react-hot-toast";
 import useCart from "../../../hooks/useCart";
 
 const Header = () => {
+
+  
+
   const { user, logOut } = useContext(AuthContext);
 
   const [cart]=useCart();
+  const totalPrice = parseFloat(cart.reduce((total, item) => total + item.productPrice, 0).toFixed(2));
 
   // console.log(user);
 
@@ -149,7 +153,7 @@ const Header = () => {
                 >
                   <div className="card-body">
                     <span className="text-lg font-bold">{cart? cart?.length : 0} Items</span>
-                    <span className="text-info">Subtotal: $999</span>
+                    <span className="text-info">Subtotal: {totalPrice} <span className="font-extrabold">&#2547;</span></span>
                     <div className="card-actions">
                       <Link to='/cart' className="btn btn-primary btn-block">
                         View cart
