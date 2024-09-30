@@ -7,7 +7,7 @@ import { AuthContext } from "../providers/AuthProviders";
 
 const CheckoutForm = () => {
   const { user } = useContext(AuthContext);
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState();
@@ -90,7 +90,7 @@ const CheckoutForm = () => {
       console.log(paymentIntent);
       // 1. Create payment info object
       const paymentInfo = {
-        name: user?.name,
+        email: user?.email,
         price: totalPrice,
         transactionId: paymentIntent?.id,
         date: new Date(),
@@ -106,10 +106,20 @@ const CheckoutForm = () => {
           paymentInfo
         );
         console.log(data);
+        // 3. Delete Cart data
+        if (data?.insertedId) {
+          const items = paymentInfo?.cartId;
+          // console.log('Items for delete===> ',items);
+          const { data } = await axios.delete(
+            "http://localhost:8000/carts-delete",
+            { data: { id: items } }
+          );
+          console.log("Deleted count:", data);
+          refetch();
+        }
       } catch (err) {
         console.log(err);
       }
-      // 3. Delete Cart data
     }
     setProcessing(false);
     // Confirm payment end

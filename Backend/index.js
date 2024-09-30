@@ -118,53 +118,23 @@ async function run() {
     });
     // Save payment data to database after stripe payment end
 
-
-
-    // Data store to database after payment
-    // app.post("/payments", async (req, res) => {
-    //   const payment = req.body;
-    //   const paymentResult = await paymentCollection.insertOne(payment);
-    //   // Delete all items from cart after payment
-    //   // console.log("Payment Info: ", payment);
-    //   const query = {
-    //     _id: {
-    //       $in: payment?.cartId?.map((id) => new ObjectId(id)),
-    //     },
-    //   };
-    //   const deleteResult = await cartCollection.deleteMany(query);
-
-    //   res.send(paymentResult, deleteResult);
-    // });
-
-    // app.post("/payments", async (req, res) => {
-    //   try {
-    //     const payment = req.body;
-
-    //     // Store payment data in the database
-    //     const paymentResult = await paymentCollection.insertOne(payment);
-
-    //     // Prepare the query to delete items from the cart
-    //     const query = {
-    //       _id: {
-    //         $in: payment?.cartId?.map((id) => new ObjectId(id)),
-    //       },
-    //     };
-
-    //     // Delete items from the cart
-    //     const deleteResult = await cartCollection.deleteMany(query);
-
-    //     // Respond with the results
-    //     res.send({ paymentResult, deleteResult });
-    //   } catch (error) {
-    //     console.error(
-    //       "Error processing payment and deleting cart items:",
-    //       error
-    //     );
-    //     res
-    //       .status(500)
-    //       .send({ error: "An error occurred while processing your request." });
-    //   }
-    // });
+    // Cart items dlete after payment => start
+    app.delete("/carts-delete", async (req, res) => {
+      const { id } = req.body;
+      try {
+        // Convert each cartId from a string to ObjectId
+        const query = {
+          _id: {
+            $in: id.map((id) => ObjectId.createFromHexString(id)), // Its only for 24 digit id. lese use => new ObjectId(id)
+          },
+        };
+        const deleteResult = await cartCollection.deleteMany(query);
+        res.send(deleteResult);
+      } catch (error) {
+        console.log(error.message);
+      }
+    });
+    // Cart items dlete after payment => End
 
     // Delete single Cart items from cart page
     app.delete("/carts/:id", async (req, res) => {
