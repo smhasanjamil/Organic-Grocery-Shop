@@ -9,7 +9,7 @@ const useCart = () => {
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:8000/carts?email=${user?.email}`
+        `https://organic-grocery-shop-backend.vercel.app/carts?email=${user?.email}`
       );
       return response.data;
     },

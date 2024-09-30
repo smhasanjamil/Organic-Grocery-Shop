@@ -9,7 +9,7 @@ const Cart = () => {
   // Handle delete
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:8000/carts/${id}`)
+      .delete(`https://organic-grocery-shop-backend.vercel.app/carts/${id}`)
       .then((response) => {
         // console.log('Item deleted:', response.data);
 

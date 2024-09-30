@@ -28,7 +28,7 @@ const CheckoutForm = () => {
   // Get client secret
   const getClientSecret = async (price) => {
     const { data } = await axios.post(
-      `http://localhost:8000/create-payment-intent`,
+      `https://organic-grocery-shop-backend.vercel.app/create-payment-intent`,
       price
     );
     console.log("clientSecret from server--->", data.clientSecret);
@@ -102,7 +102,7 @@ const CheckoutForm = () => {
       // 2. Save payment info in payment collection (db)
       try {
         const { data } = await axios.post(
-          "http://localhost:8000/payment",
+          "https://organic-grocery-shop-backend.vercel.app/payment",
           paymentInfo
         );
         console.log(data);
@@ -111,7 +111,7 @@ const CheckoutForm = () => {
           const items = paymentInfo?.cartId;
           // console.log('Items for delete===> ',items);
           const { data } = await axios.delete(
-            "http://localhost:8000/carts-delete",
+            "https://organic-grocery-shop-backend.vercel.app/carts-delete",
             { data: { id: items } }
           );
           console.log("Deleted count:", data);
