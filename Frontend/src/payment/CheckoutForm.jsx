@@ -99,11 +99,19 @@ const CheckoutForm = () => {
         status: "Succeeded",
       };
       console.log(paymentInfo);
-      setProcessing(false);
       // 2. Save payment info in payment collection (db)
+      try {
+        const { data } = await axios.post(
+          "http://localhost:8000/payment",
+          paymentInfo
+        );
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
       // 3. Delete Cart data
     }
-
+    setProcessing(false);
     // Confirm payment end
   };
 
@@ -126,14 +134,20 @@ const CheckoutForm = () => {
             },
           }}
         />
-        {processing ? <button className="btn btn-success text-white">
-          <span className="loading loading-spinner"></span>
-          Processing
-        </button> : <button type="submit" disabled={!stripe || !clientSecret || processing} className="btn btn-success text-white">
-          Pay Now
-        </button>  }
-        
-        
+        {processing ? (
+          <button className="btn btn-success text-white">
+            <span className="loading loading-spinner"></span>
+            Processing
+          </button>
+        ) : (
+          <button
+            type="submit"
+            disabled={!stripe || !clientSecret || processing}
+            className="btn btn-success text-white"
+          >
+            Pay Now
+          </button>
+        )}
       </form>
       {cardError && <p className="text-red-600 p-4">{cardError}</p>}
     </>

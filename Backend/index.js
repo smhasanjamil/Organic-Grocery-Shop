@@ -111,7 +111,11 @@ async function run() {
     // Stripe payment end
 
     // Save payment data to database after stripe payment start
-   
+    app.post("/payment", async (req, res) => {
+      const paymentData = req.body;
+      const result = await paymentCollection.insertOne(paymentData);
+      res.send(result);
+    });
     // Save payment data to database after stripe payment end
 
 
