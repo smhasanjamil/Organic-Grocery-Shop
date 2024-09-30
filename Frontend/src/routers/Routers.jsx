@@ -8,6 +8,7 @@ import Login from "../components/Authentication/Login";
 import ViewProduct from "../components/shop/product/ViewProduct";
 import Dashboard from "../layout/Dashboard";
 import Cart from "../components/shop/cart/Cart";
+import Payment from "../payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
       {
         path: "/blog",

@@ -1,29 +1,28 @@
 import axios from "axios";
 import useCart from "../../../hooks/useCart";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
 
   // Handle delete
-const handleDelete=(id)=>{
- 
-  axios.delete(`http://localhost:8000/carts/${id}`)
-        .then(response => {
-            // console.log('Item deleted:', response.data);
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:8000/carts/${id}`)
+      .then((response) => {
+        // console.log('Item deleted:', response.data);
 
-            if (response?.data?.deletedCount > 0) {
-                alert('Deleted Succesfully');
-                // const remain = users.filter(user => user._id !== id);
-                // setUsers(remain);
-                refetch();
-            }
+        if (response?.data?.deletedCount > 0) {
+          toast.success("Deleted successfully!");
 
-        })
-        .catch(error => {
-            console.error('Error deleting item:', error.message);
-        });
-  
-}
+          refetch();
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error.message);
+      });
+  };
 
   const totalPrice = parseFloat(
     cart.reduce((total, item) => total + item.productPrice, 0).toFixed(2)
@@ -31,7 +30,9 @@ const handleDelete=(id)=>{
   return (
     <div className="min-h-screen max-w-7xl mx-auto px-4 lg:px-4">
       <div className="font-sans max-w-4xl max-md:max-w-xl mx-auto p-4">
-        <h1 className="text-2xl font-extrabold text-gray-800">Your Cart</h1>
+        <h1 className="text-2xl font-extrabold text-gray-800">
+          Items: {cart?.length}
+        </h1>
         <div className="grid md:grid-cols-3 gap-4 mt-8">
           <div className="md:col-span-2 space-y-4">
             {/* Product Start */}
@@ -98,11 +99,10 @@ const handleDelete=(id)=>{
 
                 <div className="ml-auto flex flex-col">
                   <div className="flex items-start gap-4 justify-end">
-                    <button onClick={()=>handleDelete(myCart?._id)}>
-                      
+                    <button onClick={() => handleDelete(myCart?._id)}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-4 cursor-pointer fill-gray-400 inline-block"
+                        className="w-4 cursor-pointer fill-red-600 inline-block"
                         viewBox="0 0 24 24"
                       >
                         <path
@@ -157,18 +157,43 @@ const handleDelete=(id)=>{
             </ul>
 
             <div className="mt-8 space-y-2">
-              <button
-                type="button"
-                className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-gray-800 hover:bg-gray-900 text-white rounded-md"
-              >
-                Buy Now
-              </button>
-              <button
-                type="button"
-                className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent hover:bg-gray-100 text-gray-800 border border-gray-300 rounded-md"
-              >
-                Continue Shopping
-              </button>
+              {/* <Link to="/payment">
+                <button
+                  disabled={!cart?.length}
+                  type="button"
+                  className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-green-600 hover:bg-green-700 text-white rounded-md"
+                >
+                  Payment
+                </button>
+              </Link> */}
+
+              {cart?.length ? (
+                <Link to="/payment">
+                  <button
+                    type="button"
+                    className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-green-600 hover:bg-green-700 text-white rounded-md"
+                  >
+                    Payment
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  disabled
+                  type="button"
+                  className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-green-600 hover:bg-green-700 text-white rounded-md"
+                >
+                  Payment
+                </button>
+              )}
+
+              <Link to="/shop">
+                <button
+                  type="button"
+                  className="text-sm px-4 py-2.5 my-2 w-full font-semibold tracking-wide bg-transparent hover:bg-gray-100 text-gray-800 border border-gray-300 rounded-md"
+                >
+                  Continue Shopping
+                </button>
+              </Link>
             </div>
           </div>
           {/* Cart Right side end */}
