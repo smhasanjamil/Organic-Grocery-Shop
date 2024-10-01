@@ -1,9 +1,19 @@
+import LineChart from "./chart/LineChart";
+import PieChart from "./chart/LineChartTwo";
+
 const DashboardHome = () => {
-    return (
-        <div>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui explicabo maxime odit dolore adipisci delectus doloremque? Numquam ducimus est culpa? Corporis saepe alias porro odit perspiciatis dolores reprehenderit quae id ratione dolorum, accusantium nihil, doloribus vero sapiente animi magni. Molestiae quos atque, nemo quia unde ratione quis non consequuntur dicta ut. Provident, debitis magni beatae commodi optio adipisci similique mollitia esse veritatis numquam ipsam iste quidem nisi reiciendis cumque veniam consequatur cupiditate? Magnam, consequuntur nulla. Hic nesciunt consequuntur, dolorum mollitia architecto est necessitatibus repellendus alias accusamus aperiam, quidem tempora voluptas ullam ab ipsam nisi commodi adipisci itaque assumenda minima nam. Iste cupiditate mollitia molestias sapiente alias sit culpa ipsum sunt aspernatur animi iusto laborum nostrum est consectetur vel, facilis accusamus qui nobis, dolorem consequuntur eligendi at, suscipit temporibus omnis. Fuga nemo repellendus in magni quia dignissimos perferendis eveniet quod, debitis deleniti minima saepe neque recusandae. Hic reprehenderit quisquam omnis minima ex voluptates a maxime nam, voluptatem fugiat! Officiis, atque cum hic exercitationem accusantium quaerat nisi eum repellat dignissimos suscipit, expedita beatae mollitia illo adipisci distinctio vero. Libero obcaecati voluptatem praesentium aperiam nostrum vel, ad nobis, harum ipsum nihil sit est tenetur voluptas adipisci quia atque ipsa sunt architecto repudiandae nisi!
-        </div>
-    );
+  return (
+    <div className="flex gap-2 lg:flex-row flex-col">
+      <div className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
+      <h1 className="text-center py-1 text-xl font-semibold">Expenses Over Times</h1>
+        <LineChart />
+      </div>
+      <div className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
+        <h1 className="text-center py-2 text-xl font-semibold">Expense Analysis</h1>
+        <PieChart />
+      </div>
+    </div>
+  );
 };
 
 export default DashboardHome;

@@ -1,4 +1,4 @@
-import { FaChartBar, FaListAlt } from "react-icons/fa";
+import { FaChartBar, FaListAlt, FaHome } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
@@ -9,11 +9,15 @@ const DashboardSidebar = ({ isSidebarOpen }) => {
       icon: FaChartBar,
       text: "Dashboard",
     },
-
     {
       href: "/dashboard/my-order",
       icon: FaListAlt,
       text: "My Order",
+    },
+    {
+      href: "/",
+      icon: FaHome,
+      text: "Back Home",
     },
     {
       href: "/login",
@@ -32,7 +36,10 @@ const DashboardSidebar = ({ isSidebarOpen }) => {
           {links?.map((link, index) => (
             <div key={index}>
               <li>
-                <Link to={link?.href} className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
+                <Link
+                  to={link?.href}
+                  className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100"
+                >
                   <span>
                     <link.icon className="mr-3" />
                   </span>

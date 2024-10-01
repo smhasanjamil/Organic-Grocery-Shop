@@ -76,6 +76,20 @@ async function run() {
       res.send(cartItem);
     });
 
+    // Get payment data after order complete using email
+    app.get("/my-products/:email", async (req, res) => {
+      const email = req.params.email;
+      // console.log(email);
+      const query = {
+        email: email,
+      };
+      const product = await paymentCollection
+        .find(query)
+        .sort({ date: -1 })
+        .toArray();
+      res.send(product);
+    });
+
     // Add user to database while registration in firebase
     app.post("/users", async (req, res) => {
       const user = req.body;
