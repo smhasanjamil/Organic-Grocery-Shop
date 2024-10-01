@@ -28,7 +28,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/view-product/:id",
-        element: <ViewProduct />,
+        element: (
+          <PrivateRoutes>
+            <ViewProduct />
+          </PrivateRoutes>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://organic-grocery-shop-backend.vercel.app/product/${params.id}`

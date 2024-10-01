@@ -4,20 +4,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
 import toast from "react-hot-toast";
 import useCart from "../../../hooks/useCart";
+import SetLoader from "../../../loader/SetLoader";
 
 const Product = () => {
   const { user } = useContext(AuthContext);
   const [, refetch] = useCart();
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get("https://organic-grocery-shop-backend.vercel.app/product")
       .then((response) => {
         //   console.log(response.data);
         setProducts(response.data);
+        setLoading(false);
       });
   }, []);
 
@@ -56,6 +60,10 @@ const Product = () => {
     }
   };
 
+  if (loading) {
+    return <SetLoader />;
+  }
+
   return (
     <div className="max-w-7xl mx-auto my-10 px-4 lg:px-0">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -89,7 +97,7 @@ const Product = () => {
                 >
                   Add to Cart
                 </button>
-                <Link to={`view-product/${product?._id}`} className="w-full">
+                <Link to={`/view-product/${product?._id}`} className="w-full">
                   <button className="w-full px-4 py-2 text-white bg-green-600 rounded-lg duration-150 hover:bg-green-700">
                     View
                   </button>

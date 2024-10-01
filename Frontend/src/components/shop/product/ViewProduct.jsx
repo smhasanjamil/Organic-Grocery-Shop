@@ -49,6 +49,7 @@ const ViewProduct = () => {
       navigate("/login");
     }
   };
+  
 
   return (
     <>
