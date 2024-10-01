@@ -1,8 +1,25 @@
 import { FaChartBar, FaListAlt, FaHome } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import toast from "react-hot-toast";
 
 const DashboardSidebar = ({ isSidebarOpen }) => {
+  const { logOut } = useContext(AuthContext);
+
+  // Handle Logout
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        console.log("Sign-out successful.");
+        toast.success("Logged out successfully!");
+      })
+      .catch((error) => {
+        console.log("An error happened.", error);
+      });
+  };
+
   const links = [
     {
       href: "/dashboard",
@@ -18,11 +35,6 @@ const DashboardSidebar = ({ isSidebarOpen }) => {
       href: "/",
       icon: FaHome,
       text: "Back Home",
-    },
-    {
-      href: "/login",
-      icon: CiLogout,
-      text: "Logout",
     },
   ];
   return (
@@ -48,6 +60,14 @@ const DashboardSidebar = ({ isSidebarOpen }) => {
               </li>
             </div>
           ))}
+          <li className="font-medium text-gray-900 rounded-lg hover:bg-gray-100">
+            <button className="flex items-center p-2" onClick={handleLogout}>
+              <span className="mr-3">
+                <CiLogout />
+              </span>
+              Logout
+            </button>
+          </li>
         </ul>
       </div>
     </aside>

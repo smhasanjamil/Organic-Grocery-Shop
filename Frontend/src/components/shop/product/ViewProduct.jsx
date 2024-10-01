@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -12,6 +12,8 @@ const ViewProduct = () => {
   const [, refetch] = useCart();
 
   const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   // Handle add to cart
   const handleAddToCart = (product) => {
@@ -43,6 +45,8 @@ const ViewProduct = () => {
         .catch((error) => {
           console.log(error.message);
         });
+    } else {
+      navigate("/login");
     }
   };
 

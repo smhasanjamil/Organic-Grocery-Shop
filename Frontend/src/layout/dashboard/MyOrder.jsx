@@ -7,7 +7,7 @@ const MyOrder = () => {
   const [orderItems, setOrderItems] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/my-products/${user?.email}`)
+      .get(`https://organic-grocery-shop-backend.vercel.app/my-products/${user?.email}`)
       .then((response) => {
         // console.log(response.data);
         setOrderItems(response.data);

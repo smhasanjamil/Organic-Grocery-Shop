@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
 import toast from "react-hot-toast";
 import useCart from "../../../hooks/useCart";
@@ -9,6 +9,9 @@ const Product = () => {
   const { user } = useContext(AuthContext);
   const [, refetch] = useCart();
   const [products, setProducts] = useState([]);
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios
       .get("https://organic-grocery-shop-backend.vercel.app/product")
@@ -48,6 +51,8 @@ const Product = () => {
         .catch((error) => {
           console.log(error.message);
         });
+    } else {
+      navigate("/login");
     }
   };
 
