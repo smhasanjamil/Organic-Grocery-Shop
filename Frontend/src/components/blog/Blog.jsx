@@ -1,14 +1,26 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import SetLoader from "../../loader/SetLoader";
 
 const Blog = () => {
   const [blogs, setblogs] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    axios.get("https://organic-grocery-shop-backend.vercel.app/blog").then((response) => {
-      // console.log(response.data);
-      setblogs(response.data);
-    });
+    setLoading(true);
+    axios
+      .get("https://organic-grocery-shop-backend.vercel.app/blog")
+      .then((response) => {
+        // console.log(response.data);
+        setblogs(response.data);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) {
+    return <SetLoader />;
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 lg:px-0">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -26,7 +38,9 @@ const Blog = () => {
               <h3 className="text-lg font-bold text-gray-800 mb-3">
                 {blog?.title}
               </h3>
-              <p className="text-gray-500 text-sm text-justify">{blog?.description}</p>
+              <p className="text-gray-500 text-sm text-justify">
+                {blog?.description}
+              </p>
               <p className="text-green-500 text-[13px] font-semibold mt-4">
                 {blog?.date}
               </p>
