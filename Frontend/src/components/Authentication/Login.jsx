@@ -44,7 +44,7 @@ const Login = () => {
         <div className="max-w-sm w-full text-gray-600 space-y-5">
           <div className="text-center pb-8">
             <img
-              src="https://i.ibb.co.com/jLQNvjb/organic.png"
+              src="https://i.ibb.co.com/j3ZzVGQ/organic-high-resolution-logo-transparent.png"
               width={150}
               className="mx-auto"
             />

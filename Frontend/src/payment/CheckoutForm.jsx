@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import useCart from "../hooks/useCart";
 import { AuthContext } from "../providers/AuthProviders";
+import PaymentSuccess from "./PaymentSuccess";
+import './CheckoutForm.css'
 
 const CheckoutForm = () => {
   const { user } = useContext(AuthContext);
@@ -13,6 +15,8 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState();
   const [cardError, setCardError] = useState("");
   const [processing, setProcessing] = useState(false);
+  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+  const [successData, setSuccessData] = useState(null); // For holding success data
 
   const totalPrice = parseFloat(
     cart.reduce((total, item) => total + item.productPrice, 0).toFixed(2)
@@ -87,7 +91,7 @@ const CheckoutForm = () => {
     }
 
     if (paymentIntent.status === "succeeded") {
-      console.log(paymentIntent);
+      console.log("Payment Intent==>>", paymentIntent);
       // 1. Create payment info object
       const paymentInfo = {
         email: user?.email,
@@ -115,6 +119,19 @@ const CheckoutForm = () => {
             { data: { id: items } }
           );
           console.log("Deleted count:", data);
+          if (data?.deletedCount) {
+            // Prepare success data and set it for payment success page
+            const successData = {
+              paymentType: paymentMethod?.type,
+              paymentBrand: paymentMethod?.card?.brand,
+              transactionId: paymentInfo?.transactionId,
+              price: totalPrice,
+            };
+            // console.log("Success data =>>", successData);
+             // Set success data to state
+          setSuccessData(successData);
+            setShowPaymentSuccess(true);// Show the PaymentSuccess modal
+          }
           refetch();
         }
       } catch (err) {
@@ -145,7 +162,7 @@ const CheckoutForm = () => {
           }}
         />
         {processing ? (
-          <button className="btn btn-success text-white">
+          <button className="btn btn-success text-white btn-block bg-green-600 hover:bg-green-700">
             <span className="loading loading-spinner"></span>
             Processing
           </button>
@@ -153,13 +170,16 @@ const CheckoutForm = () => {
           <button
             type="submit"
             disabled={!stripe || !clientSecret || processing}
-            className="btn btn-success text-white"
+            className="btn btn-success text-white btn-block bg-green-600 hover:bg-green-700"
           >
             Pay Now
           </button>
         )}
       </form>
       {cardError && <p className="text-red-600 p-4">{cardError}</p>}
+      {/* Conditionally render PaymentSuccess modal ==> End */}
+      {showPaymentSuccess && <PaymentSuccess successData={successData} />}
+      {/* Conditionally render PaymentSuccess modal ==> Start */}
     </>
   );
 };

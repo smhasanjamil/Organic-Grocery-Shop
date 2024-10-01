@@ -49,7 +49,7 @@ const Register = () => {
         <div className="w-full space-y-6 text-gray-600 sm:max-w-md">
           <div className="text-center">
             <img
-              src="https://i.ibb.co.com/jLQNvjb/organic.png"
+              src="https://i.ibb.co.com/j3ZzVGQ/organic-high-resolution-logo-transparent.png"
               width={150}
               className="mx-auto"
             />

@@ -26,7 +26,15 @@ const Product = () => {
       const image = product?.image;
       const productPrice = product?.price;
       const productId = product?._id;
-      const cart = { email, productName, image, productPrice, productId };
+      const productCategory = product?.category;
+      const cart = {
+        email,
+        productName,
+        image,
+        productPrice,
+        productId,
+        productCategory,
+      };
       // console.log(cart);
       axios
         .post("https://organic-grocery-shop-backend.vercel.app/carts", cart)

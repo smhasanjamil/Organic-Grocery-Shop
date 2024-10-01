@@ -47,9 +47,9 @@ const Header = () => {
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <Link to="/">
               <img
-                src="https://i.ibb.co.com/jLQNvjb/organic.png"
+                src="https://i.ibb.co.com/j3ZzVGQ/organic-high-resolution-logo-transparent.png"
                 width={120}
-                height={50}
+                // height={50}
                 alt="Float UI logo"
               />
               {/* <h1 className="text-green-600 font-extrabold text-2xl">

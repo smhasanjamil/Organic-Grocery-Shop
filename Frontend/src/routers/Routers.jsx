@@ -9,6 +9,8 @@ import ViewProduct from "../components/shop/product/ViewProduct";
 import Dashboard from "../layout/Dashboard";
 import Cart from "../components/shop/cart/Cart";
 import Payment from "../payment/Payment";
+import MyOrder from "../layout/dashboard/MyOrder";
+import DashboardHome from "../layout/dashboard/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +56,17 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: "/dashboard",
     element: <Dashboard />,
+    children: [
+      {
+        path: "",
+        element: <DashboardHome />,
+      },
+      {
+        path: "my-order",
+        element: <MyOrder />,
+      },
+    ],
   },
 ]);

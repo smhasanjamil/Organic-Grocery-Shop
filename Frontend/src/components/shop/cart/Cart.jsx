@@ -2,6 +2,7 @@ import axios from "axios";
 import useCart from "../../../hooks/useCart";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import Payment from "../../../payment/Payment";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
@@ -28,13 +29,13 @@ const Cart = () => {
     cart.reduce((total, item) => total + item.productPrice, 0).toFixed(2)
   );
   return (
-    <div className="min-h-screen max-w-7xl mx-auto px-4 lg:px-4">
-      <div className="font-sans max-w-4xl max-md:max-w-xl mx-auto p-4">
+    <div className="h-screen max-w-7xl mx-auto px-4 lg:px-2">
+      <div className="font-sans max-w-6xl mx-auto p-4">
         <h1 className="text-2xl font-extrabold text-gray-800">
           Items: {cart?.length}
         </h1>
-        <div className="grid md:grid-cols-3 gap-4 mt-8">
-          <div className="md:col-span-2 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-8">
+          <div className="lg:col-span-7 space-y-4">
             {/* Product Start */}
             {cart?.map((myCart) => (
               <div
@@ -55,7 +56,7 @@ const Cart = () => {
                         {myCart?.productName}
                       </h3>
                       <p className="text-sm font-semibold text-gray-500 mt-2 ">
-                        ID: {myCart?.productId}
+                        {myCart?.productCategory}
                       </p>
                     </div>
 
@@ -127,7 +128,7 @@ const Cart = () => {
             {/* Product End */}
           </div>
           {/* Cart Right side start */}
-          <div className="bg-white rounded-md px-4 py-6 h-max shadow-[0_2px_12px_-3px_rgba(6,81,237,0.3)]">
+          <div className="lg:col-span-5 bg-white rounded-md px-4 py-6 h-max shadow-[0_2px_12px_-3px_rgba(6,81,237,0.3)]">
             <ul className="text-gray-800 space-y-4">
               <li className="flex flex-wrap gap-4 text-sm">
                 Subtotal{" "}
@@ -157,17 +158,7 @@ const Cart = () => {
             </ul>
 
             <div className="mt-8 space-y-2">
-              {/* <Link to="/payment">
-                <button
-                  disabled={!cart?.length}
-                  type="button"
-                  className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-green-600 hover:bg-green-700 text-white rounded-md"
-                >
-                  Payment
-                </button>
-              </Link> */}
-
-              {cart?.length ? (
+              {/* {cart?.length ? (
                 <Link to="/payment">
                   <button
                     type="button"
@@ -184,7 +175,8 @@ const Cart = () => {
                 >
                   Payment
                 </button>
-              )}
+              )} */}
+              <Payment />
 
               <Link to="/shop">
                 <button
