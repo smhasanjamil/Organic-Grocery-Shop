@@ -84,7 +84,7 @@ const Product = () => {
                   </span>
                 </div>
                 <div className="font-bold text-xl mb-2 text-green-600">
-                  {product.price} &#2547;
+                &#36;{product.price}
                 </div>
                 <p className="text-gray-400 text-base">
                   Review: ({product?.review})

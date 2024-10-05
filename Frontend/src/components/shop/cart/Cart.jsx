@@ -118,8 +118,7 @@ const Cart = () => {
                     </button>
                   </div>
                   <h3 className="text-base font-bold text-gray-800 mt-auto">
-                    {myCart?.productPrice}{" "}
-                    <span className="font-extrabold">&#2547;</span>
+                    &#36;{myCart?.productPrice}
                   </h3>
                 </div>
               </div>
@@ -131,29 +130,21 @@ const Cart = () => {
           <div className="lg:col-span-5 bg-white rounded-md px-4 py-6 h-max shadow-[0_2px_12px_-3px_rgba(6,81,237,0.3)]">
             <ul className="text-gray-800 space-y-4">
               <li className="flex flex-wrap gap-4 text-sm">
-                Subtotal{" "}
-                <span className="ml-auto font-bold">
-                  {totalPrice} <span className="font-extrabold">&#2547;</span>
-                </span>
+                Subtotal
+                <span className="ml-auto font-bold">&#36;{totalPrice}</span>
               </li>
               <li className="flex flex-wrap gap-4 text-sm">
-                Shipping{" "}
-                <span className="ml-auto font-bold">
-                  0.00 <span className="font-extrabold">&#2547;</span>
-                </span>
+                Shipping
+                <span className="ml-auto font-bold">&#36;0.00</span>
               </li>
               <li className="flex flex-wrap gap-4 text-sm">
-                Tax{" "}
-                <span className="ml-auto font-bold">
-                  0.00 <span className="font-extrabold">&#2547;</span>
-                </span>
+                Tax
+                <span className="ml-auto font-bold">&#36;0.00</span>
               </li>
               <hr className="border-gray-300" />
               <li className="flex flex-wrap gap-4 text-sm font-bold">
-                Total{" "}
-                <span className="ml-auto">
-                  {totalPrice} <span className="font-extrabold">&#2547;</span>
-                </span>
+                Total
+                <span className="ml-auto">&#36;{totalPrice}</span>
               </li>
             </ul>
 

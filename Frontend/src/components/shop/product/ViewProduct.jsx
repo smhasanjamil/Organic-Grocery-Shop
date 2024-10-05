@@ -70,7 +70,7 @@ const ViewProduct = () => {
               </h2>
               <div className="mt-4">
                 <p className="text-gray-800 text-xl font-bold">
-                  {product?.price} &#2547;
+                &#36;{product?.price}
                 </p>
               </div>
 

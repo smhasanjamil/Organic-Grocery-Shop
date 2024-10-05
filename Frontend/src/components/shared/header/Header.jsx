@@ -153,7 +153,7 @@ const Header = () => {
                 >
                   <div className="card-body">
                     <span className="text-lg font-bold">{cart? cart?.length : 0} Items</span>
-                    <span className="text-green-600">Subtotal: {totalPrice} <span className="font-extrabold">&#2547;</span></span>
+                    <span className="text-green-600">Subtotal: &#36;{totalPrice}</span>
                     <div className="card-actions">
                       <Link to='/cart' className="btn bg-green-600 hover:bg-green-700 text-white btn-block">
                         View cart
