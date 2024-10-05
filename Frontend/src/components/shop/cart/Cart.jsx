@@ -29,7 +29,7 @@ const Cart = () => {
     cart.reduce((total, item) => total + item.productPrice, 0).toFixed(2)
   );
   return (
-    <div className="h-screen max-w-7xl mx-auto px-4 lg:px-2">
+    <div className="min-h-screen max-w-7xl mx-auto px-4 lg:px-2">
       <div className="font-sans max-w-6xl mx-auto p-4">
         <h1 className="text-2xl font-extrabold text-gray-800">
           Items: {cart?.length}
