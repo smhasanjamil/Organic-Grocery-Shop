@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
 
   // Handle registration
   const handleRegister = (event) => {
@@ -19,28 +19,32 @@ const Register = () => {
     // Create user by password
     createUser(email, password)
       .then((userCredential) => {
-        toast.success('Successfully registered!')
+        toast.success("Successfully registered!");
         const user = userCredential.user;
         console.log(user);
         // console.log(user?.email);
-        const userMail=user?.email;
-        const userEmail = {userMail}
+        const userMail = user?.email;
+        const userEmail = { userMail };
         form.reset();
         // Form data insert to database start
-        axios.post('https://organic-grocery-shop-backend.vercel.app/users', userEmail)
-        .then(res => {
+        axios
+          .post(
+            "https://organic-grocery-shop-backend.vercel.app/users",
+            userEmail
+          )
+          .then((res) => {
             console.log(res.data);
-        })
-        .catch(error => {
+          })
+          .catch((error) => {
             console.log(error.message);
-        });
-    // Form data insert to database end
+          });
+        // Form data insert to database end
       })
       .catch((error) => {
         // const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
-        toast.error("Registration failed!")
+        toast.error("Registration failed!");
       });
   };
   return (
@@ -73,6 +77,7 @@ const Register = () => {
               <div>
                 <label className="font-medium">Email</label>
                 <input
+                  placeholder="Enter email"
                   name="email"
                   type="email"
                   required
@@ -82,6 +87,7 @@ const Register = () => {
               <div>
                 <label className="font-medium">Password</label>
                 <input
+                  placeholder="Atleaast six characters"
                   name="password"
                   type="password"
                   required
